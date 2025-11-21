@@ -100,15 +100,7 @@
   </style>
 </head>
 <body>
-  <!--
-    Standalone Pixel Poster HTML
-    Usage: save this file as "pixel-poster.html" and open in a browser.
-    Replace ./images/Me.png and ./images/You.png with Mer own images (same filenames) or change the src attributes below.
 
-    If Me'd like, tell me the image URLs and I will embed them directly.
-  -->
-
-  <!-- Scrolling I love you text -->
   <div class="love-scroll">
     <div class="love-text">
       <span>I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;</span>
@@ -126,6 +118,14 @@
       <span>I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;</span>
       <span>I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;</span>
     </div>
+            <div class="love-text">
+      <span>I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;</span>
+      <span>I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;</span>
+    </div>
+            <div class="love-text">
+      <span>I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;</span>
+      <span>I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;</span>
+    </div>
         <div class="love-text">
       <span>I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;</span>
       <span>I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;</span>
@@ -140,7 +140,6 @@
     </div>
   </div>
 
-  <!-- Background music from YouTube -->
   <iframe id="bgMusic" width="0" height="0" src="" frameborder="0" allow="autoplay; encrypted-media" style="display:none"></iframe>
 
   <div class="card" id="poster">
@@ -227,24 +226,18 @@
   </div>
 
   <script>
-    // --- Simple interactive helpers ---
-    // Me can change these values to personalize before saving.
+
     const config = {
       MeName: 'Sehbear',
       YouName: '',
       title: 'Happy Birthday',
-      // Image sources: replace these with real URLs or local paths
       MeSrc: './images/Me.png',
       YouSrc: './images/You.png',
-      // YouTube video ID for background music (replace with your favorite love song)
-      // Example: 'dQw4w9WgXcQ' or any other YouTube video ID
-      youtubeVideoId: 'IXtQryPFCJE' // Change this to any YouTube video ID you like!
+      youtubeVideoId: 'IXtQryPFCJE' 
     }
 
-    // Load background music
     if(config.youtubeVideoId) {
       const iframe = document.getElementById('bgMusic')
-      // Start at 10 seconds
       iframe.src = `https://www.youtube.com/embed/${config.youtubeVideoId}?autoplay=1&start=10&loop=1&playlist=${config.youtubeVideoId}&controls=0&modestbranding=1&showinfo=0`
     }
 
@@ -255,7 +248,6 @@
     document.getElementById('MeImg').src = config.MeSrc
     document.getElementById('YouImg').src = config.YouSrc
 
-    // Small keyboard easter: press 'k' to toggle pixel filter and 'm' to play a short chiptune tone
     let pixel=false
     window.addEventListener('keydown', (e)=>{
       if(e.key==='k'){ pixel = !pixel; document.querySelectorAll('img').forEach(i=> i.style.filter = pixel? 'contrast(1.08) saturate(1.15) pixelated(2)' : 'none') }
@@ -264,7 +256,6 @@
       }
     })
 
-    // If images fail to load, replace with colorful placeholders
     document.querySelectorAll('img').forEach(img=>{
       img.onerror = ()=>{
         img.onerror = null
