@@ -101,6 +101,9 @@
 </head>
 <body>
 
+  <!-- Glittery Rain Canvas -->
+  <canvas id="glitterRain" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:0;"></canvas>
+
   <div class="love-scroll">
     <div class="love-text">
       <span>I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;I LOVE YOU&nbsp;&nbsp;&nbsp;</span>
@@ -226,6 +229,57 @@
   </div>
 
   <script>
+
+  // Glittery Rain Effect
+  (function glitterRain() {
+    const canvas = document.getElementById('glitterRain');
+    const ctx = canvas.getContext('2d');
+    let w = window.innerWidth, h = window.innerHeight;
+    function resize() {
+      w = window.innerWidth; h = window.innerHeight;
+      canvas.width = w; canvas.height = h;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    // Particle config
+    const colors = ['#fff6fa', '#ffd89a', '#0fe7d0', '#19c7ff', '#ff8ac4', '#e8ffff', '#fff', '#ffe6fb'];
+    const particles = [];
+    const count = Math.floor(w * 0.18); // density
+    for(let i=0;i<count;i++){
+      particles.push({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: 1.2 + Math.random()*2.2,
+        c: colors[Math.floor(Math.random()*colors.length)],
+        v: 1.2 + Math.random()*2.5,
+        a: 0.7 + Math.random()*0.7,
+        tw: Math.random()*Math.PI*2,
+        tws: 0.01 + Math.random()*0.02
+      });
+    }
+    function draw() {
+      ctx.clearRect(0,0,w,h);
+      for(const p of particles){
+        ctx.save();
+        ctx.globalAlpha = p.a * (0.7 + 0.3*Math.sin(p.tw));
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = p.c;
+        ctx.shadowColor = p.c;
+        ctx.shadowBlur = 8 + 8*Math.random();
+        ctx.fill();
+        ctx.restore();
+        p.y += p.v;
+        p.x += Math.sin(p.tw)*0.6;
+        p.tw += p.tws;
+        if(p.y > h+8) { p.y = -8; p.x = Math.random()*w; }
+        if(p.x < -8) p.x = w+8;
+        if(p.x > w+8) p.x = -8;
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
 
     const config = {
       MeName: 'Sehbear',
